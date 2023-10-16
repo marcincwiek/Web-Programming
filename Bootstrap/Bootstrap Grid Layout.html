@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Basics</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="display-1 text-center text-primary">The Grid System</h1>
+        <div class="row">
+            <div class="col-6 bg-warning">I am 6 units</div>
+            <div class="col-6 bg-info">I am 6 units</div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2 bg-success">I am 2 units</div>
+            <div class="col-8 bg-info">I am 8 units</div>
+            <div class="col-2 bg-danger">I am 2 units</div>
+        </div>
+        <h2 class="display-4 text-center">Responsive Grid</h2>
+        <div class="row">
+            <div class="col-md-6 col-xl-3 bg-success">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+                nulla
+                corrupti,
+                distinctio
+                officiis consequatur veniam voluptatum possimus dolores neque nostrum repellendus odio iusto consectetur
+                atque esse? Magnam voluptatibus inventore maxime?</div>
+            <div class="col-md-6 col-xl-3 bg-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nulla
+                corrupti,
+                distinctio
+                officiis consequatur veniam voluptatum possimus dolores neque nostrum repellendus odio iusto consectetur
+                atque esse? Magnam voluptatibus inventore maxime?</div>
+            <div class="col-md-6 col-xl-3 bg-success">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+                nulla
+                corrupti,
+                distinctio
+                officiis consequatur veniam voluptatum possimus dolores neque nostrum repellendus odio iusto consectetur
+                atque esse? Magnam voluptatibus inventore maxime?</div>
+            <div class="col-md-6 col-xl-3 bg-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nulla
+                corrupti,
+                distinctio
+                officiis consequatur veniam voluptatum possimus dolores neque nostrum repellendus odio iusto consectetur
+                atque esse? Magnam voluptatibus inventore maxime?</div>
+        </div>
+        <h2 class="display-4 text-center">Grid Aligment</h2>
+        <div class="row align-items-center">
+            <div class="col-md-6 col-xl-3 bg-danger">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+                nulla
+                corrupti,
+                distinctio
+                officiis consequatur veniam voluptatum possimus dolores neque nostrum repellendus odio iusto consectetur
+                atque esse? Magnam voluptatibus inventore maxime?</div>
+            <div class="col-md-6 col-xl-3 bg-warning">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+                nulla
+                corrupti,
+                distinctio
+                officiis consequatur veniam voluptatum possimus dolores neque nostrum repellendus odio iusto consectetur
+                atque esse? Magnam voluptatibus inventore maxime? Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Itaque error, molestias aspernatur voluptates quos, voluptatem magni, adipisci earum qui quis
+                ipsam! Est ad sequi exercitationem nihil laboriosam aperiam architecto. Vero!
+                Minus doloribus unde molestias excepturi deserunt quaerat ipsa necessitatibus, iure odit hic, officiis
+                consectetur atque iusto voluptatem! Illum quis repellendus veniam error? Expedita minus fuga
+                repudiandae, pariatur molestiae ullam corrupti!</div>
+            <div class="col-md-6 col-xl-3 bg-info">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+                nulla
+                corrupti,
+                distinctio
+                officiis consequatur veniam voluptatum possimus dolores neque nostrum repellendus odio iusto consectetur
+                atque esse? Magnam voluptatibus inventore maxime? Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Vero libero, laboriosam sit alias voluptatibus dolorum neque necessitatibus iure exercitationem.
+                Et maxime autem veniam, maiores ipsa rem enim perferendis sint error!</div>
+            <div class="col-md-6 col-xl-3 bg-dark align-self-end">Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Culpa nulla
+                corrupti,
+                distinctio
+                officiis consequatur veniam voluptatum possimus dolores neque nostrum repellendus odio iusto consectetur
+                atque esse? Magnam voluptatibus inventore maxime?</div>
+            <h3>Justify content</h3>
+            <div class="row border justify-content-center justify-content-lg-start justify-content-xl-between">
+                <div class="col-md-4 bg-primary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum
+                    nulla
+                    soluta! Laborum aperiam architecto at ullam delectus ab facilis excepturi dolore pariatur! Veniam,
+                    voluptate earum corporis sint consequatur aliquid.</div>
+                <div class="col-md-4 bg-info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cum nulla
+                    soluta! Laborum aperiam architecto at ullam delectus ab facilis excepturi dolore pariatur! Veniam,
+                    voluptate earum corporis sint consequatur aliquid.</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-md-6">
+                <img class="img-fluid"
+                    src="https://images.unsplash.com/photo-1589595363745-d842812a9db7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+                    alt="">
+            </div>
+
+            <div class="col-xl-4 col-md-6">
+                <img class="img-fluid"
+                    src="https://images.unsplash.com/photo-1511692277506-3be3a7ab1686?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+                    alt="">
+            </div>
+            <div class="col-xl-4 col-md-6">
+                <img class="img-fluid"
+                    src="https://images.unsplash.com/photo-1497206365907-f5e630693df0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
+                    alt="">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
