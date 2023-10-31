@@ -1,0 +1,11 @@
+<button id="guzik" class="btn btn-success"
+    [style.backgroundColor]="isActive ? 'lightblue' : 'olive'">Colour-True/False</button>
+<br>
+
+<div (click)="onDivClicked()">
+    <button id="guzik2" class="btn btn-success" (click)="onSave($event)">Click click!</button>
+</div>
+
+<form action="">
+    <input type="text" (keyup.enter)="onKeyUp()">
+</form>

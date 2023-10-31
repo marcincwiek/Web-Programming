@@ -1,4 +1,3 @@
-import { CustomersService } from './customers.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,11 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent {
-  title = "List of Customers"
-  customers;
+  isActive = true;
 
-  constructor(service: CustomersService) {
-    // let service = new CustomersService();
-    this.customers = service.GetCustomers();
+  onDivClicked() {
+    console.log("Div was clicked");
+  }
+
+  onSave(event: any) {
+    event.stopPropagation();
+    console.log("Button was clicked", event);
+  }
+
+  onKeyUp() {
+    console.log("Enter was pressed");
   }
 }
