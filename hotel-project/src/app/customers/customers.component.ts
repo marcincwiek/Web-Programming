@@ -20,4 +20,17 @@ export class CustomersComponent {
   onKeyUp() {
     console.log("Enter was pressed");
   }
+  email = "me@example.com";
+  onKeyUpEmail() {
+    console.log(this.email);
+  }
+  customers = {
+    title: "Hotel Details:",
+    rating: 4.87,
+    rooms: 21,
+    price: 37,
+    freeDay: new Date(2023, 11, 7)
+  }
+
+  text = " dadadadadadda dudududu tututut dadadada aaaa!"
 }

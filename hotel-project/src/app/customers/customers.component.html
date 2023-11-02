@@ -1,11 +1,60 @@
-<button id="guzik" class="btn btn-success"
-    [style.backgroundColor]="isActive ? 'lightblue' : 'olive'">Colour-True/False</button>
-<br>
+<!DOCTYPE html>
+<html lang="en">
 
-<div (click)="onDivClicked()">
-    <button id="guzik2" class="btn btn-success" (click)="onSave($event)">Click click!</button>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-<form action="">
-    <input type="text" (keyup.enter)="onKeyUp()">
-</form>
+<body>
+
+
+
+
+    <button id="guzik" class="btn btn-success"
+        [style.backgroundColor]="isActive ? 'lightblue' : 'olive'">Colour-True/False</button>
+    <br>
+
+    <div (click)="onDivClicked()">
+        <button id="guzik2" class="btn btn-success" (click)="onSave($event)">Click click!</button>
+    </div>
+
+    <input type="text" (keyup.enter)="onKeyUp()" placeholder="text">
+
+    <input type="email" [(ngModel)]="email" (keyup.enter)="onKeyUpEmail()" placeholder="email">
+
+    <div id="details">
+        <b>{{ customers.title | uppercase}} <br></b>
+        Hotel rating:
+        {{ customers.rating | number: '1.1-3'}} <br>
+        Room available:
+        {{ customers.rooms | number}} <br>
+        Price per night:
+        {{ customers.price | currency:'PLN'}} <br>
+        Availabe Date:
+        {{ customers.freeDay | date:'shortDate'| date:'dd/MM/yyyy'}} <br>
+    </div>
+
+    {{ text | summary: 23}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
