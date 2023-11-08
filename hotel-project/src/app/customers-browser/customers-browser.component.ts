@@ -10,8 +10,7 @@ export class CustomersBrowserComponent {
     title = "List of Customers"
     customers;
 
-    constructor() {
-        let service = new CustomersService();
+    constructor(private service: CustomersService) {
         this.customers = service.getCustomers();
     }
 }
