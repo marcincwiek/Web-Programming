@@ -1,31 +1,34 @@
-<H3>Last Reservations:</H3>
-<ul>
-    <li *ngFor="let reservation of reservations">
-        {{reservation | json}}
-    </li>
-</ul>
+<h3 class="h3">Last Reservations List:</h3>
+<div>
+    <table class="table table-hover ">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Room Type</th>
+                <th>Room Number</th>
+                <th>Check-in Date</th>
+                <th>Check-out Date</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Date Updated</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reservation of reservations">
+                <td>{{ reservation.id | number}}</td>
+                <td>{{ reservation.customer.firstName }} {{ reservation.customer.lastName }}</td>
+                <td>{{ reservation.roomType | uppercase}}</td>
+                <td>{{ reservation.room | number}}</td>
+                <td>{{ reservation.dateArrival | date:'shortDate'| date:'dd/MM/yyyy'}}</td>
+                <td>{{ reservation.dateDeparture | date:'shortDate'| date:'dd/MM/yyyy'}}</td>
+                <td>{{ reservation.paymentAmount | currency: 'PLN'}}</td>
+                <td>{{ reservation.status | uppercase}}</td>
+                <td>{{ reservation.dateUpdated | date:'shortDate'| date:'dd/MM/yyyy'}}</td>
+                <td>{{ reservation.notes }}</td>
+            </tr>
+        </tbody>
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Customer</th>
-            <th>Room Type</th>
-            <th>Room Number</th>
-            <th>Check-in Date</th>
-            <th>Check-out Date</th>
-            <th>Price</th>
-            <th>Status</th>
-            <th>Data Updated</th>
-            <th>Notes</th>
-        </tr>
-    </thead>
-    <!-- <tbody>
-        <tr>
-            <td>*ngFor="let reservation of reservations">
-                {{reservation | json}}
-            </td>
-        </tr>
-    </tbody> -->
-
-</table>
+    </table>
+</div>
