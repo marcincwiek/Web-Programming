@@ -12,6 +12,8 @@ import { CustomersService } from './customers.service';
 import { SummaryPipe } from './summary.pipe';
 import { PostsComponent } from './posts/posts.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReservationComponent } from './reservation/reservation.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     CustomersBrowserComponent,
     NavBarComponent,
     SummaryPipe,
-    PostsComponent
+    PostsComponent,
+    ReservationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

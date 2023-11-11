@@ -1,0 +1,31 @@
+<H3>Last Reservations:</H3>
+<ul>
+    <li *ngFor="let reservation of reservations">
+        {{reservation | json}}
+    </li>
+</ul>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Room Type</th>
+            <th>Room Number</th>
+            <th>Check-in Date</th>
+            <th>Check-out Date</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Data Updated</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <!-- <tbody>
+        <tr>
+            <td>*ngFor="let reservation of reservations">
+                {{reservation | json}}
+            </td>
+        </tr>
+    </tbody> -->
+
+</table>
