@@ -5,9 +5,6 @@ import { Observable } from 'rxjs';
 
 
 @Injectable()
-
-
-
 export class CustomersService {
 
   getCustomers() {
@@ -18,7 +15,6 @@ export class CustomersService {
     return new Promise((resolve, reject) => {
       this.http.get('https://jsonplaceholder.typicode.com/posts').subscribe(Response => {
         resolve(Object.values(Response));
-
       });
     })
   }
@@ -26,9 +22,7 @@ export class CustomersService {
   async getReservation(): Promise<Array<any>> {
     return new Promise((resolve, reject) => {
       this.http.get('http://213.248.166.144:7070/customer/lastReservations').subscribe(Response => {
-        // this.http.get('https://jsonplaceholder.typicode.com/posts').subscribe(Response => {
         resolve(Object.values(Response));
-
       });
     })
   }
