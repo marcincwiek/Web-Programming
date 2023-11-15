@@ -1,0 +1,16 @@
+<div class="card card-default">
+    <div class="card-header">
+        <ng-content select=".header"></ng-content>
+    </div>
+    <div class="card-body">
+        <ng-content select=".body"></ng-content>
+    </div>
+</div>
+
+
+<button (click)="onAdd()">Add</button>
+<ul>
+    <li *ngFor="let city of cities">
+        {{city.name}}
+    </li>
+</ul>

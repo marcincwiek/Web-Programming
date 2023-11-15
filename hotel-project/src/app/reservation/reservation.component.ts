@@ -9,6 +9,7 @@ import { CustomersService } from '../customers.service';
 })
 export class ReservationComponent {
   reservations: any;
+  customers = [];
 
   constructor(private service: CustomersService) {
     this.service.getReservation().then(
