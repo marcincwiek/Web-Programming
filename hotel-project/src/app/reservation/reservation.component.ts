@@ -9,7 +9,6 @@ import { CustomersService } from '../customers.service';
 })
 export class ReservationComponent {
   reservations: any;
-  customers = [];
 
   constructor(private service: CustomersService) {
     this.service.getReservation().then(
@@ -27,5 +26,16 @@ export class ReservationComponent {
       const updateDate = new Date(reservation.dateUpdated);
       return updateDate >= lastWeek;
     });
+  }
+
+  toggleNoteEdit(index: number): void {
+    this.reservations[index].editing = !this.reservations[index].editing;
+  }
+
+  saveNote(index: number): void {
+    const upadateNote = this.reservations[index].newNote;
+    this.reservations[index].notes = upadateNote.split('\n').filter((note: string) => note.trim() !== '');
+    this.reservations[index].editing = false;
+
   }
 }

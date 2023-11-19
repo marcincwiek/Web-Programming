@@ -16,10 +16,11 @@
                     <th>Status</th>
                     <th>Date Updated</th>
                     <th>Notes</th>
+                    <th>ADD Notes</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let reservation of reservations">
+                <tr *ngFor="let reservation of reservations; let i = index">
                     <td>{{ reservation.id | number}}</td>
                     <td>{{ reservation.customer.firstName }} {{ reservation.customer.lastName }}</td>
                     <td>{{ reservation.roomType | uppercase}}</td>
@@ -30,6 +31,13 @@
                     <td>{{ reservation.status | uppercase}}</td>
                     <td>{{ reservation.dateUpdated | date:'shortDate'| date:'dd/MM/yyyy'}}</td>
                     <td>{{ reservation.notes }}</td>
+                    <td>
+                        <span id="span" (click)="toggleNoteEdit(i)">📓</span>
+                        <div *ngIf="reservation.editing">
+                            <textarea [(ngModel)]="reservation.newNote"></textarea>
+                            <button id="guzik" class="btn btn-success" (click)="saveNote(i)">Save</button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
 
