@@ -11,3 +11,8 @@ h3 {
 textarea {
     display: block;
 }
+
+#invisible {
+    background: transparent;
+    border: none !important;
+}

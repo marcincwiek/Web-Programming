@@ -9,6 +9,7 @@ import { CustomersService } from '../customers.service';
 })
 export class ReservationComponent {
   reservations: any;
+  noteVisible: boolean = true;
 
   constructor(private service: CustomersService) {
     this.service.getReservation().then(
@@ -36,6 +37,21 @@ export class ReservationComponent {
     const upadateNote = this.reservations[index].newNote;
     this.reservations[index].notes = upadateNote.split('\n').filter((note: string) => note.trim() !== '');
     this.reservations[index].editing = false;
-
+    this.showNote();
   }
+
+
+  goBack(index: number): void {
+    this.reservations[index].editing = false;
+    this.showNote();
+  }
+
+  hideNote() {
+    this.noteVisible = false;
+  }
+
+  showNote() {
+    this.noteVisible = true;
+  }
+
 }

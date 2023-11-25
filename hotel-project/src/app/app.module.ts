@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReservationComponent } from './reservation/reservation.component';
 import { HomeComponent } from './home/home.component';
 import { PanelComponent } from './panel/panel.component';
+import { InputFormatDirective } from './input-format.directive';
+import { CustomerFormComponent } from './customer-form/customer-form.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { PanelComponent } from './panel/panel.component';
     PostsComponent,
     ReservationComponent,
     HomeComponent,
-    PanelComponent
+    PanelComponent,
+    InputFormatDirective,
+    CustomerFormComponent
   ],
   imports: [
     BrowserModule,

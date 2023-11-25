@@ -32,10 +32,12 @@
                     <td>{{ reservation.dateUpdated | date:'shortDate'| date:'dd/MM/yyyy'}}</td>
                     <td>{{ reservation.notes }}</td>
                     <td>
-                        <span id="span" (click)="toggleNoteEdit(i)">📓</span>
+                        <span id="span" (click)="toggleNoteEdit(i)"><button *ngIf="noteVisible" (click)="hideNote()"
+                                id="invisible">📓</button></span>
                         <div *ngIf="reservation.editing">
-                            <textarea [(ngModel)]="reservation.newNote"></textarea>
+                            <textarea placeholder="Add Note" [(ngModel)]="reservation.newNote"></textarea>
                             <button id="guzik" class="btn btn-success" (click)="saveNote(i)">Save</button>
+                            <button class="btn btn-success" (click)="goBack(i)">Back</button>
                         </div>
                     </td>
                 </tr>
