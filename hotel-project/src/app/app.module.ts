@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { PanelComponent } from './panel/panel.component';
 import { InputFormatDirective } from './input-format.directive';
 import { CustomerFormComponent } from './customer-form/customer-form.component';
+import { FavouriteComponent } from './favourite/favourite.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CustomerFormComponent } from './customer-form/customer-form.component';
     HomeComponent,
     PanelComponent,
     InputFormatDirective,
-    CustomerFormComponent
+    CustomerFormComponent,
+    FavouriteComponent
   ],
   imports: [
     BrowserModule,

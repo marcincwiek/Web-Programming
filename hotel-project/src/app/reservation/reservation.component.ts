@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { FavouriteComponent } from './../favourite/favourite.component';
+import { Component, OnInit, Input } from '@angular/core';
 import { CustomersService } from '../customers.service';
+import { filter } from 'rxjs';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-reservation',
@@ -8,8 +11,9 @@ import { CustomersService } from '../customers.service';
   styleUrls: ['./reservation.component.css']
 })
 export class ReservationComponent {
-  reservations: any;
+  reservations: any[] = [];
   noteVisible: boolean = true;
+  showFavouritesOnly = false;
 
   constructor(private service: CustomersService) {
     this.service.getReservation().then(
@@ -53,5 +57,7 @@ export class ReservationComponent {
   showNote() {
     this.noteVisible = true;
   }
-
+  onFavouriteChange(eventArgs: any) {
+    console.log("Favourite changed ", eventArgs);
+  }
 }

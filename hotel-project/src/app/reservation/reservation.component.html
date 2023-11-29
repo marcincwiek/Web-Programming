@@ -31,7 +31,10 @@
                     <td>{{ reservation.paymentAmount | currency: 'PLN'}}</td>
                     <td>{{ reservation.status | uppercase}}</td>
                     <td>{{ reservation.dateUpdated | date:'shortDate'| date:'dd/MM/yyyy'}}</td>
-                    <td></td>
+                    <td>
+                        <favourite [isSelected]="reservation.isSelected" (change)="onFavouriteChange($event)">
+                        </favourite>
+                    </td>
                     <td>{{ reservation.notes }}</td>
                     <td>
                         <span id="span" (click)="toggleNoteEdit(i)"><button *ngIf="noteVisible" (click)="hideNote()"
