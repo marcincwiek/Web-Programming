@@ -1,9 +1,12 @@
 <div *ngIf="reservations.length > 0; then customersList; else noCustomers"></div>
 
 <ng-template #customersList>
-    <h3 class="h3">Last Week Reservations List:</h3>
+    <div id="aaa">
+        <h3 class="h3">Last Week Reservations List:</h3>
+        <button id="filtry" class="btn btn-success" (click)="toggleFilter()">Filter On/Off</button>
+    </div>
     <div>
-        <table class="table table-hover table-responsive-md">
+        <table class="table table-hover table-responsive-md" *ngIf="showFilter">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
@@ -53,5 +56,9 @@
 </ng-template>
 
 <ng-template #noCustomers>
-    <h3 class="h3">There are no reservations made in the last week</h3>
+    <div id="aaa">
+        <h3 class="h3">There are no reservations made in the last week</h3>
+        <button id="filtry" class="btn btn-success" (click)="toggleFilter()">Filter On/Off</button>
+    </div>
+
 </ng-template>

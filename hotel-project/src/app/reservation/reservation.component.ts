@@ -14,6 +14,7 @@ export class ReservationComponent {
   reservations: any[] = [];
   noteVisible: boolean = true;
   showFavouritesOnly = false;
+  showFilter = true;
 
   constructor(private service: CustomersService) {
     this.service.getReservation().then(
@@ -59,5 +60,16 @@ export class ReservationComponent {
   }
   onFavouriteChange(eventArgs: any) {
     console.log("Favourite changed ", eventArgs);
+  }
+
+  toggleFilter() {
+    this.showFilter = !this.showFilter;
+    if (this.showFilter) {
+      this.filterReservationsForLastWeek();
+    } else {
+      this.service.getReservation().then((data) => {
+        this.reservations = data;
+      });
+    }
   }
 }

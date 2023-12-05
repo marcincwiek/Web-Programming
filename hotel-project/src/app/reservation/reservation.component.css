@@ -2,6 +2,18 @@ h3 {
     margin: 12px;
 }
 
+#aaa {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#filtry {
+    margin-left: auto;
+    margin-right: 12px;
+}
+
+
 #guzik {
     margin: 5px;
     padding: 5px 10px;

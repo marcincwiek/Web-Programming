@@ -1,39 +1,75 @@
-<body>
-    <h1>Create a New Account</h1>
-    <form #f="ngForm" (ngSubmit)="submit(f)">
-        <div class="form-row">
+<div class="container">
+    <div class="row justify-content-center">
+        <form class="col-md-5" [formGroup]="form" (ngSubmit)="SaveData()">
 
-            <div class="form-group col">
-                <label for="firstName">Name</label>
-                <input required minlength="3" maxlength="10" ngModel name="firstName" #firstName="ngModel"
-                    (change)="log(firstName)" id="firstName" type="text" class="form-control">
-                <div class="alert alert-danger" *ngIf="firstName.touched && firstName.errors">
-                    <div class="alert" *ngIf="firstName.errors?.['required']">First name is required</div>
-                    <div class="alert" *ngIf="firstName.errors?.['minlength']">First name should be minimum 3 letters
+            <h1>Create a New Account</h1>
+            <div class="form-row">
+                <div class="col form-group">
+                    <label for="firstName">Name</label>
+                    <input formControlName="firstName" required minlength="3" maxlength="10" name="firstName"
+                        id="firstName" type="text" class="form-control" placeholder="First Name">
+                    <div class="alert alert-danger" *ngIf="firstName?.touched && firstName?.errors">
+                        <div class="alert" *ngIf="firstName?.errors?.['required']">First name is required</div>
+                        <div class="alert" *ngIf="firstName?.errors?.['minlength']">Minimum 3 letters</div>
+                        <div class="alert" *ngIf="firstName?.errors?.['cannotContainSpace']">Cannot contain space</div>
+                    </div>
+                </div>
+                <div class="col form-group">
+                    <label for="lastName">Last Name</label>
+                    <input formControlName="lastName" required minlength="3" name="lastName" type="text" id="lastName"
+                        class="form-control" placeholder="Last Name">
+                    <div class="alert alert-danger" *ngIf="lastName?.touched && lastName?.errors">
+                        <div class="alert" *ngIf="lastName?.errors?.['required']">Last name is required</div>
+                        <div class="alert" *ngIf="lastName?.errors?.['minlength']">Minimum 3 letters</div>
+                        <div class="alert" *ngIf="lastName?.errors?.['cannotContainSpace']">Cannot contain space</div>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group col">
-                <label for="lastName">Last Name</label>
-                <input required minlength="3" ngModel name="lastName" #lastName="ngModel" (change)="log(lastName)"
-                    type="text" id="lastName" class="form-control">
-                <div class="alert alert-danger" *ngIf="lastName.touched && lastName.errors">
-                    <div class="alert" *ngIf="lastName.errors?.['required']">Last name is required</div>
-                    <div class="alert" *ngIf="lastName.errors?.['minlength']">First name should be minimum 3 letters
+            <div class="form-row">
+                <div class="col">
+                    <label for="roomNumber">Room Number</label>
+                    <input formControlName="roomNumber" type="text" name="roomNumber" id="roomNumber"
+                        class="form-control" placeholder="Number">
+                    <div class="alert alert-danger" *ngIf="roomNumber?.touched && roomNumber?.errors">
+                        <div class="alert" *ngIf="roomNumber?.errors?.['required']">Required</div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <label for="price">Price</label>
+                    <input formControlName="price" type="text" name="number" id="price" class="form-control"
+                        placeholder="Price">
+
+                    <div class="alert alert-danger" *ngIf="price?.touched && price?.errors">
+                        <div class="alert" *ngIf="price?.errors?.['required']">Price is required</div>
+                        <div class="alert" *ngIf="price?.errors?.['min']">Minimal price is 27</div>
+                    </div>
+                </div>
+
+                <div class="col form-group">
+                    <label for="roomType">Room Type</label>
+                    <input formControlName="roomType" type="text" name="roomType" id="roomType" class="form-control"
+                        placeholder="Type">
+                    <div class="alert alert-danger" *ngIf="roomType?.touched && roomType?.errors">
+                        <div class="alert" *ngIf="roomType?.errors?.['required']">Required</div>
+
                     </div>
                 </div>
             </div>
 
-        </div>
 
 
-        <div class="form-group">
-            <label for="comment">Comment</label>
-            <textarea id="comment" cols="30" rows="10" class="form-control"></textarea>
-        </div>
+            <div class="form-group">
+                <label for="comment">Comment</label>
+                <textarea formControlName="comment" id="comment" cols="30" rows="10" class="form-control"
+                    placeholder="Leave Your comment here!"></textarea>
+            </div>
 
-        <button class="btn btn-success">Submit</button>
-        <div class="alert alert-danger" id="textAreaError" *ngIf="f.invalid && (f.dirty || f.touched)">Error</div>
-    </form>
-</body>
+            <button type="submit" class="btn btn-success">Submit</button>
+            <div class="alert alert-danger" id="textAreaError" *ngIf="form.invalid && (form.dirty || form.touched)">
+                Error</div>
+
+        </form>
+    </div>
+</div>
