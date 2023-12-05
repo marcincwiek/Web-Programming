@@ -40,10 +40,11 @@ import { FavouriteComponent } from './favourite/favourite.component';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     CustomersService,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })
