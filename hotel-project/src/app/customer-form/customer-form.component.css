@@ -54,3 +54,13 @@ body {
 #textAreaError {
     padding: 15px;
 }
+
+option {
+    text-align: center;
+}
+
+form {
+    border: 3px solid #28a745;
+    margin: 10px;
+    padding: 5px;
+}

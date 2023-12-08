@@ -32,7 +32,7 @@ import { FavouriteComponent } from './favourite/favourite.component';
     PanelComponent,
     InputFormatDirective,
     CustomerFormComponent,
-    FavouriteComponent
+    FavouriteComponent,
   ],
   imports: [
     BrowserModule,
