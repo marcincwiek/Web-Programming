@@ -35,22 +35,28 @@ export class CustomerFormComponent {
   constructor(private http: HttpClient) { }
 
   onSubmit(form: NgForm) {
-    // Handle form submission logic here
     console.log(this.customer);
 
-    // Call the createCustomer API
     this.http.post('http://213.248.166.144:7070/customer/createCustomer', this.customer)
       .subscribe({
         next: response => {
-          // Handle success response
+          alert('Customer created successfully')
           console.log('Customer created successfully:', response);
 
-          // Optionally, reset the form after successful submission
           form.resetForm();
         },
         error: error => {
-          // Handle error
-          console.error('Error creating customer:', error);
+          if (error.status == 400) {
+            alert('Bad request error')
+          }
+          if (error.status == 500) {
+            alert('Duplicated entry error')
+          }
+          else {
+            alert('An unexpected error occurred');
+            console.error('An unexpected error occurred', error);
+          }
+
         }
       });
   }
@@ -94,6 +100,4 @@ export class CustomerFormComponent {
   get price() {
     return this.customerForm.get('price');
   }
-
-
 }

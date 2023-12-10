@@ -64,3 +64,7 @@ form {
     margin: 10px;
     padding: 5px;
 }
+
+form {
+    background-color: gainsboro;
+}
