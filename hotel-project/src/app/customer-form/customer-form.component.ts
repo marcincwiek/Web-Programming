@@ -46,11 +46,14 @@ export class CustomerFormComponent {
           form.resetForm();
         },
         error: error => {
-          if (error.status == 400) {
-            alert('Bad request error')
+          if (error.status == 409) {
+            alert('Error 409, Customer already exists, change TC no')
           }
-          if (error.status == 500) {
-            alert('Duplicated entry error')
+          else if (error.status == 400) {
+            alert('Error 400, Bad request error')
+          }
+          else if (error.status == 500) {
+            alert('Error 500, Customer already exists')
           }
           else {
             alert('An unexpected error occurred');
@@ -60,17 +63,6 @@ export class CustomerFormComponent {
         }
       });
   }
-
-
-  // customerForm = new FormGroup({
-
-  //   firstName: new FormControl('', [Validators.required, Validators.minLength(3), CustomerValidator.cannotContainSpace]),
-  //   lastName: new FormControl('', [Validators.required, Validators.minLength(3), CustomerValidator.cannotContainSpace]),
-  //   // price: new FormControl('', [Validators.required, CustomerValidator.minPrice]),
-  //   // roomType: new FormControl('', [Validators.required]),
-  //   // roomNumber: new FormControl('', [Validators.required]),
-  //   notes: new FormControl('')
-  // });
 
 
   customerForm = new FormGroup({
