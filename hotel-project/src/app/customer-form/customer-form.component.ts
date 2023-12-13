@@ -1,11 +1,9 @@
-import { NgForm, NgModel, FormGroup } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { CustomersService } from './../customers.service';
+import { NgForm, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { CustomerValidator } from './customer.validator';
-import { Injectable, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Customer } from './customer';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'customer-form',
@@ -32,38 +30,32 @@ export class CustomerFormComponent {
     notes: '',
   };
 
-  constructor(private http: HttpClient) { }
+  // customer = new Customer(-1);
+  errors!: {};
 
-  onSubmit(form: NgForm) {
+  constructor(private service: CustomersService) { }
+
+  async onSubmit(form: NgForm) {
+    this.errors = {};
     console.log(this.customer);
-
-    this.http.post('http://213.248.166.144:7070/customer/createCustomer', this.customer)
-      .subscribe({
-        next: response => {
-          alert('Customer created successfully')
-          console.log('Customer created successfully:', response);
-
-          form.resetForm();
+    const cst = await this.service.checkIfCustomerAlreadyExist(this.customer.tcNo, this.customer.email);
+    console.log(cst);
+    if (cst != null) {
+      this.errors = { CustomerExist: 'Customer already exist. Verify TC No and Email' };
+      alert('Customer already exist. Verify TC No and Email');
+    } else {
+      this.service.createCustomer(this.customer).subscribe({
+        next: (value: any) => {
+          alert("Customer is saved ");
         },
-        error: error => {
-          if (error.status == 409) {
-            alert('Error 409, Customer already exists, change TC no')
-          }
-          else if (error.status == 400) {
-            alert('Error 400, Bad request error')
-          }
-          else if (error.status == 500) {
-            alert('Error 500, Customer already exists')
-          }
-          else {
-            alert('An unexpected error occurred');
-            console.error('An unexpected error occurred', error);
-          }
-
+        error: (reason: any) => {
+          console.log("Rejected because " + reason);
+          this.errors = { RejectedByServer: "Rejected due to a server error" };
+          alert('Rejected due to a server error');
         }
       });
+    }
   }
-
 
   customerForm = new FormGroup({
 
