@@ -1,9 +1,11 @@
+import { DuplicateRecordError } from './../common/duplicate-record-error';
 import { CustomersService } from './../customers.service';
 import { NgForm, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { CustomerValidator } from './customer.validator';
 import { Customer } from './customer';
+import { AppError } from '../common/app-error';
 
 @Component({
   selector: 'customer-form',
@@ -30,7 +32,6 @@ export class CustomerFormComponent {
     notes: '',
   };
 
-  // customer = new Customer(-1);
   errors!: {};
 
   constructor(private service: CustomersService) { }
@@ -41,8 +42,8 @@ export class CustomerFormComponent {
     const cst = await this.service.checkIfCustomerAlreadyExist(this.customer.tcNo, this.customer.email);
     console.log(cst);
     if (cst != null) {
-      this.errors = { CustomerExist: 'Customer already exist. Verify TC No and Email' };
-      alert('Customer already exist. Verify TC No and Email');
+      this.errors = { CustomerExist: 'Error 409: Customer already exist. Verify TC No and Email' };
+      alert('Error 409: Customer already exist. Verify TC No and Email');
     } else {
       this.service.createCustomer(this.customer).subscribe({
         next: (value: any) => {
@@ -50,6 +51,10 @@ export class CustomerFormComponent {
         },
         error: (reason: any) => {
           console.log("Rejected because " + reason);
+          if (reason instanceof DuplicateRecordError) {
+            this.errors = { CustomerExist: reason.message };
+            alert(reason.message);
+          }
           this.errors = { RejectedByServer: "Rejected due to a server error" };
           alert('Rejected due to a server error');
         }
@@ -85,3 +90,6 @@ export class CustomerFormComponent {
     return this.customerForm.get('price');
   }
 }
+
+
+

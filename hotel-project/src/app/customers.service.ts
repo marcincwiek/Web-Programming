@@ -49,21 +49,16 @@ export class CustomersService {
       });
     });
   }
-
-
   createCustomer(customer: Customer) {
     console.log(customer);
     return this.http.post('http://213.248.166.144:7070/customer/createCustomer', customer).
       pipe(catchError((response: HttpErrorResponse) => {
         if (response.status === 409) {
-          return throwError(() => new DuplicateRecordError());
+          return throwError(() => new DuplicateRecordError('Error 409: Customer already exist. Verify TC No and Email'));
         }
-        return throwError(() => new AppError(response));
+        return throwError(() => new AppError('Rejected due to a server error'));
       }));
   }
-
-
-
 }
 
 
