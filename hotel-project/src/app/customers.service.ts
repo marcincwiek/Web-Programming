@@ -37,11 +37,10 @@ export class CustomersService {
 
   checkIfCustomerAlreadyExist(tcNo: string, email: string): Promise<any> {
     var params = new HttpParams();
-    if (tcNo != null)
-      params = params.append("tcNo", tcNo);
-    if (email != null)
-      params = params.append("email", email);
+    if (tcNo != null) params = params.append("tcNo", tcNo);
+    if (email != null) params = params.append("email", email);
     console.log(params.toString());
+
     return new Promise((resolve, reject) => {
       this.http.get('http://213.248.166.144:7070/customer/getCustomerByTcNoEmail', { params }).subscribe({
         next: response => resolve(response),

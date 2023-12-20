@@ -6,7 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { CustomerFormComponent } from './customer-form/customer-form.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  // { path: '', component: HomeComponent },
   { path: 'reservation', component: ReservationComponent },
   { path: 'customer-form', component: CustomerFormComponent }
 ];

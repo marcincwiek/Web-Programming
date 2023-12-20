@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomersComponent } from './customers/customers.component';
@@ -41,6 +41,9 @@ import { FavouriteComponent } from './favourite/favourite.component';
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+    ])
   ],
   providers: [
     CustomersService,
