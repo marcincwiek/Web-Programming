@@ -15,7 +15,6 @@ export class ReservationFormComponent implements OnInit {
   roomTypes: any[] = [];
   reservations: any[] = [];
   information: any[] = [];
-  reservationForm: FormGroup;
 
 
   reservation: ReservationForm = {
@@ -30,12 +29,10 @@ export class ReservationFormComponent implements OnInit {
 
   constructor(
     private service: CustomersService,
-    private http: HttpClient,
-    private fb: FormBuilder
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
-    this.initForm();
     this.service.getTours().subscribe(
       (data) => {
         this.reservations = data;
@@ -63,22 +60,7 @@ export class ReservationFormComponent implements OnInit {
       }
     );
   }
-
-  initForm() {
-    this.reservationForm = this.fb.group({
-      id: [0],
-      customerId: [0],
-      roomNumber: ['', Validators.required],
-      roomType: ['', Validators.required],
-      arrivalDate: [null, Validators.required],
-      departureDate: [null, Validators.required],
-      selectTour: [0, Validators.required],
-    });
-  }
-  // getAvailableRooms() {
-  //   return this.information.filter(room => room.type === this.reservation.roomType);
-  // }
   getAvailableRooms() {
-    return this.information.filter((room) => room.type === this.reservationForm.get('roomType').value);
+    return this.information.filter(room => room.type === this.reservation.roomType);
   }
 }
