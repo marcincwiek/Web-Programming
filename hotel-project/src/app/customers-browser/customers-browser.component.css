@@ -1,0 +1,12 @@
+#tabela {
+    width: 50%;
+    border: 2px solid black;
+    margin: auto;
+}
+
+h1 {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}

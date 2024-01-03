@@ -5,18 +5,34 @@
 
             <div class="form-row">
                 <div class="col form-group">
-                    <label for="customer">Customer:</label>
-                    <input id="customer" type="text" class="form-control">
+                    <label for="id">ID:</label>
+                    <input name="id" id="id" type="text" class="form-control">
+                </div>
+                <div class="col form-group">
+                    <label for="customerId">Customer ID:</label>
+                    <input name="customerId" id="customerId" [(ngModel)]="reservation.customerId" class="form-control">
                 </div>
             </div>
+
             <div class="form-row">
                 <div class="col form-group">
-                    <label for="roomNumber">Room Number:</label>
-                    <input id="roomNumber" type="text" class="form-control">
+                    <label for="roomType">Room Type:</label>
+                    <select name="roomType" id="roomType" [(ngModel)]="reservation.roomType" class="form-control">
+                        <option value="0"> -- Select one -- </option>
+                        <option *ngFor="let roomType of roomTypes" [value]="roomType"> {{roomType}} </option>
+                    </select>
                 </div>
                 <div class="col form-group">
-                    <label for="roomType">Room Type:</label>
-                    <input id="roomType" type="text" class="form-control">
+                    <label for="roomNumber">Room Number:</label>
+                    <select class="form-control" id="roomNumber" name="roomNumber" [(ngModel)]="reservation.roomNumber"
+                        required>
+                        <option value="0">-- Select One --</option>
+                        <option *ngFor="let availableRoom of getAvailableRooms()" [value]="availableRoom.name">{{
+                            availableRoom.name
+                            }}</option>
+                    </select>
+
+
                 </div>
             </div>
             <div class="form-row">
@@ -33,13 +49,15 @@
             <div class="form-row">
                 <div class="col form-group">
                     <label for="tour">Tour:</label>
-                    <select name="tour" id="tour" class="form-control" [(ngModel)]="tour.selectTour">
+                    <select name="tour" id="tour" class="form-control" [(ngModel)]="reservation.selectTour">
                         <option value="0">-- Select the Trip --</option>
-                        <option *ngFor="let tour of tours" [value]="tour.id">{{tour.name}} {{tour.price}}</option>
+                        <option *ngFor="let reservation of reservations" [value]="reservation.id">{{reservation.name}}
+                            {{reservation.price}}</option>
                     </select>
                 </div>
             </div>
-            <button class="btn btn-success">Submit</button>
+            <button class="btn btn-success" routerLink="/customer-browser">Go Back</button>
+            <button id="guzik2" class="btn btn-success">Create Reservation</button>
 
         </form>
     </div>

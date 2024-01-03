@@ -1,7 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { CustomerFormComponent } from './customer-form/customer-form.component';
 import { Customer } from './customer-form/customer';
 import { DuplicateRecordError } from './common/duplicate-record-error';
 import { AppError } from './common/app-error';
@@ -11,9 +10,7 @@ import { AppError } from './common/app-error';
 @Injectable()
 export class CustomersService {
 
-  getCustomers() {
-    return ["Wawrzyniec", "Maurycy", "Stanisław", "Krzysztof"]
-  }
+  private selectedCustomerId: number | null = null;
 
   async getPost(): Promise<Array<any>> {
     return new Promise((resolve, reject) => {
@@ -65,6 +62,29 @@ export class CustomersService {
         return throwError(error);
       })
     );
+  }
+
+  getRoomTypes() {
+    return this.http.get<any[]>('http://213.248.166.144:7070/customer/getRoomTypes').pipe(
+      catchError((error) => {
+        console.error('Error getting room type', error);
+        return throwError(error);
+      })
+    )
+  }
+  getAllCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>('http://213.248.166.144:7070/customer/search');
+  }
+  setSelectedCustomerId(customerId: number): void {
+    this.selectedCustomerId = customerId;
+  }
+  getSelectedCustomerId(): number | null {
+    return this.selectedCustomerId;
+  }
+  private apiUrl = 'http://213.248.166.144:7070/customer/allRooms';
+
+  getAllRooms(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
   }
 }
 

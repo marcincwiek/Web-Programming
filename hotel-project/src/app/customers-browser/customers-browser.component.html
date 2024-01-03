@@ -1,8 +1,23 @@
-<input type="text" appInputFormat>
+<div>
+    <h1>List of Customers:</h1>
+</div>
+<div id="tabela">
+    <table class="table table-hover table-responsive-md table-sm ">
+        <thead class="table-dark">
+            <tr>
+                <th>Customer Name</th>
+                <th>TC Number</th>
+                <th>Submit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers; let i=index">
+                <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+                <td>{{ customer.tcNo }}</td>
+                <td><button class="btn btn-success" (click)="onSelectCustomer(customer.id)">Create
+                        Reservation</button></td>
+            </tr>
+        </tbody>
 
-<h2>{{title}}</h2>
-<ul>
-    <li *ngFor="let customer of customers">
-        {{customer}}
-    </li>
-</ul>
+    </table>
+</div>

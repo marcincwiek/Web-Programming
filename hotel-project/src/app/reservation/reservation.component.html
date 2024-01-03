@@ -44,8 +44,8 @@
                                 id="invisible">📓</button></span>
                         <div *ngIf="reservation.editing">
                             <textarea placeholder="Add Note" [(ngModel)]="reservation.newNote"></textarea>
-                            <button id="guzik" class="btn btn-success" (click)="saveNote(i)">Save</button>
                             <button class="btn btn-success" (click)="goBack(i)">Back</button>
+                            <button id="guzik" class="btn btn-success" (click)="saveNote(i)">Save</button>
                         </div>
                     </td>
                 </tr>

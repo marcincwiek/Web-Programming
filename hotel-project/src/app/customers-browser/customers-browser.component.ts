@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CustomersService } from '../customers.service';
+import { Router } from '@angular/router';
+import { Customer } from '../customer-form/customer';
 
 @Component({
     selector: 'customers-browser',
@@ -9,10 +11,24 @@ import { CustomersService } from '../customers.service';
 
 
 export class CustomersBrowserComponent {
-    title = "List of Customers"
-    customers;
+    customers: Customer[] = [];
 
-    constructor(private service: CustomersService) {
-        this.customers = service.getCustomers();
+    constructor(
+        private customerService: CustomersService,
+        private router: Router
+    ) { }
+
+    ngOnInit() {
+        this.loadCustomers();
+    }
+
+    loadCustomers() {
+        this.customerService.getAllCustomers()
+            .subscribe(customers => this.customers = customers);
+    }
+
+    onSelectCustomer(customerId: number): void {
+        this.customerService.setSelectedCustomerId(customerId);
+        this.router.navigate(['/reservation-form']);
     }
 }
