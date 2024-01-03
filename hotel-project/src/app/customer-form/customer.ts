@@ -14,3 +14,6 @@ export interface Customer {
     phone: string;
     notes: string;
 }
+export interface Tours {
+    selectTour: number;
+}

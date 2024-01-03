@@ -58,6 +58,14 @@ export class CustomersService {
         return throwError(() => new AppError('Rejected due to a server error'));
       }));
   }
+  getTours() {
+    return this.http.get<any[]>('http://localhost:7070/tours').pipe(
+      catchError((error) => {
+        console.error('Error fetching tours:', error);
+        return throwError(error);
+      })
+    );
+  }
 }
 
 

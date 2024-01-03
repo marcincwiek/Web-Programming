@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <form class="col-md-5" #customerForm="ngForm">
+            <h1>Create a New Reservation</h1>
+
+            <div class="form-row">
+                <div class="col form-group">
+                    <label for="customer">Customer:</label>
+                    <select name="customer" id="customer" class="form-control">
+                        <option value="0">-- Select the Customer --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col form-group">
+                    <label for="arrival">Arrival Date:</label>
+                    <input type="date" name="arrival" id="arrival" class="form-control">
+                </div>
+                <div class="col form-group">
+                    <label for="departure">Departure Date:</label>
+                    <input type="date" name="departure" id="departure" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col form-group">
+                    <label for="tour">Tour:</label>
+                    <select name="tour" id="tour" class="form-control" [(ngModel)]="tour.selectTour">
+                        <option value="0">-- Select the Trip --</option>
+                        <option *ngFor="let tour of tours" [value]="tour.id">{{tour.name}} {{tour.price}}</option>
+                    </select>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>

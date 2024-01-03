@@ -1,7 +1,5 @@
 import { AbstractControl, ValidationErrors, Validators } from "@angular/forms";
 
-
-
 export class CustomerValidator {
     static cannotContainSpace(control: AbstractControl) {
         if ((control.value as string).indexOf(' ') >= 0)

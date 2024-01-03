@@ -1,0 +1,56 @@
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+body {
+    padding: 20px;
+}
+
+.form-control.ng-touched.ng-invalid {
+    border: 2px solid red;
+}
+
+.alert {
+    margin-top: 10px;
+    padding: 0.15em;
+    text-align: center;
+}
+
+#textAreaError {
+    padding: 15px;
+}
+
+option {
+    text-align: center;
+}
+
+form {
+    border: 3px solid #28a745;
+    margin: 10px;
+    padding: 5px;
+}
+
+form {
+    background-color: gainsboro;
+}

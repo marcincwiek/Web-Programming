@@ -13,8 +13,6 @@ import { AppError } from '../common/app-error';
   styleUrls: ['./customer-form.component.css']
 })
 export class CustomerFormComponent {
-
-
   customer: Customer = {
     id: 0,
     tcNo: '',
@@ -31,11 +29,8 @@ export class CustomerFormComponent {
     phone: '',
     notes: '',
   };
-
   errors!: {};
-
   constructor(private service: CustomersService) { }
-
   async onSubmit(form: NgForm) {
     this.errors = {};
     console.log(this.customer);
@@ -61,17 +56,15 @@ export class CustomerFormComponent {
       });
     }
   }
-
   customerForm = new FormGroup({
-
     firstName: new FormControl('', [Validators.required, Validators.minLength(3), CustomerValidator.cannotContainSpace]),
     lastName: new FormControl('', [Validators.required, Validators.minLength(3), CustomerValidator.cannotContainSpace]),
     price: new FormControl('', [Validators.required, CustomerValidator.minPrice]),
     roomType: new FormControl('', [Validators.required]),
     roomNumber: new FormControl('', [Validators.required]),
     notes: new FormControl('')
-
   });
+
 
   get firstName() {
     return this.customerForm.get('firstName');
