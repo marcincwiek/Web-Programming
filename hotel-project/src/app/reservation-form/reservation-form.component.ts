@@ -45,6 +45,7 @@ export class ReservationFormComponent implements OnInit {
       }
     );
 
+
     const selectedCustomerId = this.service.getSelectedCustomerId();
     this.reservationForm.get('customerId')!.setValue(selectedCustomerId !== null ? selectedCustomerId : 0);
 
@@ -70,7 +71,6 @@ export class ReservationFormComponent implements OnInit {
       notes: ''
     });
   }
-
   private createReservation(reservationData: any) {
     this.service.createReservation(reservationData)
       .pipe(

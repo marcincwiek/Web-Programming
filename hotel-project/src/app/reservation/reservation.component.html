@@ -1,4 +1,4 @@
-<div *ngIf="reservations.length > 0; then customersList; else noCustomers"></div>
+<div *ngIf="reservations.length >= 0; then customersList; else noCustomers"></div>
 
 <ng-template #customersList>
     <div id="aaa">
