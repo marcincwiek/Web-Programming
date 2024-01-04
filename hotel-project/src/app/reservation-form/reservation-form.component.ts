@@ -1,9 +1,10 @@
-import { Customer, Tours } from './../customer-form/customer';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { CustomersService } from '../customers.service';
 import { HttpClient } from '@angular/common/http';
-import { ReservationForm } from './reservation-form';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppError } from '../common/app-error';
+import { catchError } from 'rxjs';
+import { DuplicateRecordError } from '../common/duplicate-record-error';
 
 @Component({
   selector: 'app-reservation-form',
@@ -11,28 +12,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./reservation-form.component.css']
 })
 export class ReservationFormComponent implements OnInit {
-
   roomTypes: any[] = [];
   reservations: any[] = [];
   information: any[] = [];
-
-
-  reservation: ReservationForm = {
-    id: 0,
-    customerId: 0,
-    roomNumber: '',
-    roomType: '',
-    arrivalDate: 0,
-    departureDate: 0,
-    selectTour: 0,
-  };
+  reservationForm: FormGroup = new FormGroup({});
+  errors: any = {};
 
   constructor(
     private service: CustomersService,
-    private http: HttpClient
+    private http: HttpClient,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.initForm();
+
     this.service.getTours().subscribe(
       (data) => {
         this.reservations = data;
@@ -41,6 +35,7 @@ export class ReservationFormComponent implements OnInit {
         console.error('Error fetching tours:', error);
       }
     );
+
     this.service.getRoomTypes().subscribe(
       (data) => {
         this.roomTypes = data;
@@ -48,9 +43,11 @@ export class ReservationFormComponent implements OnInit {
       (error) => {
         console.error('Error fetching rooms types', error);
       }
-    )
+    );
+
     const selectedCustomerId = this.service.getSelectedCustomerId();
-    this.reservation.customerId = selectedCustomerId !== null ? selectedCustomerId : 0;
+    this.reservationForm.get('customerId')!.setValue(selectedCustomerId !== null ? selectedCustomerId : 0);
+
     this.service.getAllRooms().subscribe(
       (data) => {
         this.information = data;
@@ -60,7 +57,47 @@ export class ReservationFormComponent implements OnInit {
       }
     );
   }
+
+  initForm() {
+    this.reservationForm = this.fb.group({
+      id: [0],
+      customerId: [0],
+      room: ['', Validators.required],
+      roomType: ['', Validators.required],
+      dateArrival: [null, Validators.required],
+      dateDeparture: [null, Validators.required],
+      selectTour: [0, Validators.required],
+      notes: ''
+    });
+  }
+
+  private createReservation(reservationData: any) {
+    this.service.createReservation(reservationData)
+      .pipe(
+        catchError((error: AppError) => {
+          if (error instanceof DuplicateRecordError) {
+            this.errors = { DuplicateRecord: 'A duplicate record exists.' };
+          } else {
+            this.errors = { UnknownError: 'An unknown error occurred.' };
+          }
+          console.error('Error creating reservation:', error);
+          alert('Error creating reservation.');
+          return [];
+        })
+      )
+      .subscribe((response: any) => {
+        console.log('Reservation created successfully:', response);
+        alert('Reservation is saved');
+        this.reservationForm.reset();
+      });
+  }
+
+  onSubmit(form: FormGroup) {
+    console.log(this.reservationForm.value);
+    this.errors = {};
+    this.createReservation(this.reservationForm.value);
+  }
   getAvailableRooms() {
-    return this.information.filter(room => room.type === this.reservation.roomType);
+    return this.information.filter(room => room.type === this.reservationForm.get('roomType')!.value);
   }
 }

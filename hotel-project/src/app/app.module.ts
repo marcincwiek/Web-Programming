@@ -20,6 +20,7 @@ import { CustomerFormComponent } from './customer-form/customer-form.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -31,4 +31,5 @@ export class CustomersBrowserComponent {
         this.customerService.setSelectedCustomerId(customerId);
         this.router.navigate(['/reservation-form']);
     }
+
 }

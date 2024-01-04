@@ -5,8 +5,21 @@
 }
 
 h1 {
-    width: 50%;
-    margin: auto;
     margin-bottom: 5px;
     margin-top: 5px;
+    margin-right: 150px;
+}
+
+div {
+    display: flex;
+    align-items: center;
+}
+
+#tytuł {
+    width: 50%;
+    margin: 0 25%;
+}
+
+#guzik {
+    margin-left: 5px;
 }

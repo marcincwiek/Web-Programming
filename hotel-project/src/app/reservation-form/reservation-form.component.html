@@ -1,64 +1,70 @@
 <div class="container">
     <div class="row justify-content-center">
-        <form class="col-md-5" #customerForm="ngForm">
+        <form [formGroup]="reservationForm" (ngSubmit)="onSubmit(reservationForm)" class="col">
             <h1>Create a New Reservation</h1>
 
             <div class="form-row">
                 <div class="col form-group">
                     <label for="id">ID:</label>
-                    <input name="id" id="id" type="text" class="form-control">
+                    <input formControlName="id" id="id" type="text" class="form-control">
                 </div>
                 <div class="col form-group">
                     <label for="customerId">Customer ID:</label>
-                    <input name="customerId" id="customerId" [(ngModel)]="reservation.customerId" class="form-control">
+                    <input formControlName="customerId" id="customerId" class="form-control">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col form-group">
                     <label for="roomType">Room Type:</label>
-                    <select name="roomType" id="roomType" [(ngModel)]="reservation.roomType" class="form-control">
-                        <option value="0"> -- Select one -- </option>
-                        <option *ngFor="let roomType of roomTypes" [value]="roomType"> {{roomType}} </option>
+                    <select formControlName="roomType" id="roomType" class="form-control">
+                        <option value=""> -- Select one -- </option>
+                        <option *ngFor="let roomType of roomTypes" [value]="roomType">{{ roomType }}</option>
                     </select>
                 </div>
                 <div class="col form-group">
-                    <label for="roomNumber">Room Number:</label>
-                    <select class="form-control" id="roomNumber" name="roomNumber" [(ngModel)]="reservation.roomNumber"
-                        required>
-                        <option value="0">-- Select One --</option>
-                        <option *ngFor="let availableRoom of getAvailableRooms()" [value]="availableRoom.name">{{
-                            availableRoom.name
-                            }}</option>
+                    <label for="room">Room Number:</label>
+                    <select class="form-control" formControlName="room" required>
+                        <option value="">-- Select One --</option>
+                        <option *ngFor="let availableRoom of getAvailableRooms()" [value]="availableRoom.name">
+                            {{ availableRoom.name }}
+                        </option>
                     </select>
-
-
                 </div>
             </div>
+
             <div class="form-row">
                 <div class="col form-group">
-                    <label for="arrival">Arrival Date:</label>
-                    <input type="date" name="arrival" id="arrival" class="form-control">
+                    <label for="dateArrival">Arrival Date:</label>
+                    <input type="date" formControlName="dateArrival" class="form-control">
                 </div>
                 <div class="col form-group">
-                    <label for="departure">Departure Date:</label>
-                    <input type="date" name="departure" id="departure" class="form-control">
+                    <label for="dateDeparture">Departure Date:</label>
+                    <input type="date" formControlName="dateDeparture" class="form-control">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col form-group">
                     <label for="tour">Tour:</label>
-                    <select name="tour" id="tour" class="form-control" [(ngModel)]="reservation.selectTour">
+                    <select formControlName="selectTour" class="form-control">
                         <option value="0">-- Select the Trip --</option>
-                        <option *ngFor="let reservation of reservations" [value]="reservation.id">{{reservation.name}}
-                            {{reservation.price}}</option>
+                        <option *ngFor="let reservation of reservations" [value]="reservation.id">
+                            {{ reservation.name }} {{ reservation.price }}
+                        </option>
                     </select>
                 </div>
             </div>
+            <div class="form-row">
+                <div class="col form-group">
+                    <label for="notes">Notes:</label>
+                    <textarea type="text" formControlName="notes" id="notes" class="form-control"
+                        placeholder="Leave your notes here!" cols="30" rows="2"></textarea>
+                </div>
+            </div>
+
             <button class="btn btn-success" routerLink="/customer-browser">Go Back</button>
             <button id="guzik2" class="btn btn-success">Create Reservation</button>
-
         </form>
     </div>
 </div>

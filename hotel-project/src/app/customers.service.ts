@@ -4,6 +4,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { Customer } from './customer-form/customer';
 import { DuplicateRecordError } from './common/duplicate-record-error';
 import { AppError } from './common/app-error';
+import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 
 
 
@@ -85,6 +86,18 @@ export class CustomersService {
 
   getAllRooms(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
+  }
+
+  createReservation(reservation: ReservationFormComponent) {
+    return this.http.post('http://213.248.166.144:7070/customer/createReservation', reservation)
+      .pipe(
+        catchError((response: HttpErrorResponse) => {
+          if (response.status === 409) {
+            return throwError(() => new DuplicateRecordError('Duplicated Error'));
+          }
+          return throwError(() => new AppError('Unknown error occurred'));
+        })
+      );
   }
 }
 
