@@ -3,7 +3,7 @@
 <ng-template #customersList>
     <div id="aaa">
         <h3 class="h3">Last Week Reservations List:</h3>
-        <button id="filtry" class="btn btn-success" (click)="toggleFilter()">Hide</button>
+        <button id="filtry" class="btn btn-success">Hide</button>
     </div>
     <div>
         <table class="table table-hover table-responsive-md" *ngIf="showFilter">
@@ -26,14 +26,15 @@
             <tbody>
                 <tr *ngFor="let reservation of reservations; let i = index">
                     <td>{{ reservation.id | number}}</td>
-                    <td>{{ reservation.customer.firstName }} {{ reservation.customer.lastName }}</td>
+                    <!-- <td>{{ reservation.customer.firstName }} {{ reservation.customer.lastName }}</td> -->
+                    <td>{{ reservation.customer }}</td>
                     <td>{{ reservation.roomType | uppercase}}</td>
-                    <td>{{ reservation.room | number}}</td>
-                    <td>{{ reservation.dateArrival | date:'shortDate'| date:'dd/MM/yyyy'}}</td>
-                    <td>{{ reservation.dateDeparture | date:'shortDate'| date:'dd/MM/yyyy'}}</td>
+                    <td>{{ reservation.roomNumber | number}}</td>
+                    <td>{{ reservation.dateArrival }}</td>
+                    <td>{{ reservation.dateDeparture }}</td>
                     <td>{{ reservation.paymentAmount | currency: 'PLN'}}</td>
                     <td>{{ reservation.status | uppercase}}</td>
-                    <td>{{ reservation.dateUpdated | date:'shortDate'| date:'dd/MM/yyyy'}}</td>
+                    <td>{{ reservation.dateUpdated }}</td>
                     <td>
                         <favourite [isSelected]="reservation.isSelected" (change)="onFavouriteChange($event)">
                         </favourite>
@@ -58,7 +59,7 @@
 <ng-template #noCustomers>
     <div id="aaa">
         <h3 class="h3">There are no reservations made in the last week</h3>
-        <button id="filtry" class="btn btn-success" (click)="toggleFilter()">Hide</button>
+        <button id="filtry" class="btn btn-success">Hide</button>
     </div>
 
 </ng-template>

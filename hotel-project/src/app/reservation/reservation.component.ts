@@ -17,12 +17,22 @@ export class ReservationComponent {
   showFilter = true;
 
   constructor(private service: CustomersService) {
-    this.service.getReservation().then(
+    // this.service.getReservation().then(
+    //   (data) => {
+    //     this.reservations = data;
+    //     this.filterReservationsForLastWeek();
+    //   }
+    // )
+  }
+  ngOnInit() {
+    this.service.getReservation().subscribe(
       (data) => {
         this.reservations = data;
-        this.filterReservationsForLastWeek();
+      },
+      (error) => {
+        console.error('Error fetching tours:', error);
       }
-    )
+    );
   }
   filterReservationsForLastWeek() {
     const today = new Date();
@@ -62,14 +72,5 @@ export class ReservationComponent {
     console.log("Favourite changed ", eventArgs);
   }
 
-  toggleFilter() {
-    this.showFilter = !this.showFilter;
-    if (this.showFilter) {
-      this.filterReservationsForLastWeek();
-    } else {
-      this.service.getReservation().then((data) => {
-        this.reservations = data;
-      });
-    }
-  }
+
 }

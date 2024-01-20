@@ -21,12 +21,21 @@ export class CustomersService {
     })
   }
 
-  async getReservation(): Promise<Array<any>> {
-    return new Promise((resolve, reject) => {
-      this.http.get('http://213.248.166.144:7070/customer/reservations').subscribe(Response => {
-        resolve(Object.values(Response));
-      });
-    })
+  // async getReservation(): Promise<Array<any>> {
+  //   return new Promise((resolve, reject) => {
+  //     // this.http.get('http://213.248.166.144:7070/customer/reservations').subscribe(Response => {
+  //     this.http.get('http://localhost:7070/Reservations').subscribe(Response => {
+  //       resolve(Object.values(Response));
+  //     });
+  //   })
+  // }
+  getReservation() {
+    return this.http.get<any[]>('http://localhost:7070/Reservations').pipe(
+      catchError((error) => {
+        console.error('Error fetching tours:', error);
+        return throwError(error);
+      })
+    );
   }
 
   constructor(private http: HttpClient) { }
